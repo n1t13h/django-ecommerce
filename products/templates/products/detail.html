@@ -1,0 +1,15 @@
+{% extends 'main/header.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col s12 m6 l6">
+            <image class='responsive-img' src= {{ product.image.url }}>
+        </div>
+        <div class="col s6">
+            <h1>{{ product.title }}</h1>
+            <p>{{ product.description }}</p>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends 'main/header.html' %}
+{% block content %}
+
+<div class="container" style="padding-top:40px;">
+    <div class="row">
+        {% for product in products %}
+        <div class="col l3 m3 s6">
+               <div class=" transparent card small center-align">
+                    <img src="{{ product.image.url }} " style='width:150px;height:150px;'>
+                    <br>
+                    <span class="black-text">
+                        
+                        
+                       <h6> {{ product.title }}</h6>
+                       <div class="card-action">
+                            <p><strong>₹ {{ product.price }}</strong></p>
+                        </div>
+                    </span>
+                    
+                    
+                    
+                </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
