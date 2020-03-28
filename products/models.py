@@ -1,6 +1,7 @@
 from django.db import models
 import os
 from uuid import uuid4
+from django.urls import reverse
 # Create your models here.
 def path_and_rename(instance, filename):
     upload_to = 'products'
@@ -36,3 +37,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse("products:detail", kwargs={"slug": self.slug})
+    

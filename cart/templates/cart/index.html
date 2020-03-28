@@ -1,4 +1,47 @@
 {% extends 'main/header.html' %}
 {% block content %}
-    <p>Cart</p>
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+            <h4>Cart</h4>
+            <hr>
+            </div>
+        </div>
+        <div class="row">
+            {% if cart_products %}:
+                <div class="col s12">
+                    <ul class="collection">
+                    {% for product in cart_products %}
+                        <li class="collection-item avatar">
+                            <img src="{{ product.image.url }}" alt="" class="circle">
+                            <a href="{{ product.get_absolute_url }}"><span class="title">{{ product.title }}</span></a>
+                            <p>{{ product.price }} <br>
+                               
+                            </p>
+                            
+                            <form method="POST" action="/cart/update">
+                            {% csrf_token %}
+                                <input type="HIDDEN" name="id" value = '{{ product.id }}'>
+                            <button type="submit" class="btn waves-effect waves-light red secondary-content"><i class="material-icons">remove_circle</i></button>
+                            </form>
+                                                  
+                        </li>
+
+                    {% endfor %}
+                    <li  class="collection-item">
+                        <h6><span style="color:red">SubTotal: </span> {{ cart.subtotal }}</h6>
+                    </li>
+                    <li  class="collection-item">
+                        <h6><span style="color:red">Total: </span> {{ cart.total }}</h6>
+                    </li>
+                    </ul>
+                </div>
+            {% else %}
+            <div class="col s12">
+                <h1>No Items in Cart</h1>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
 {% endblock content %}

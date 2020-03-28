@@ -9,6 +9,15 @@
         <div class="col s6">
             <h1>{{ product.title }}</h1>
             <p>{{ product.description }}</p>
+            <form method="POST" action="/cart/update">
+            {% csrf_token %}
+                <input type="HIDDEN" name="id" value = '{{ product.id }}'>
+            {% if product in cart.products.all %}
+                <p>In Cart<button type="submit" style="margin-left:10px;" class="btn red">Remove?</button></p>
+            {% else %}
+                <button class="btn blue" type="submit">Add to Cart</button>
+            {% endif %}
+            </form>
         </div>
     </div>
 </div>
