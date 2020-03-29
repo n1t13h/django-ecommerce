@@ -8,6 +8,7 @@ class CartManager(models.Manager):
     def new_or_get(self,request):
         cart_id = request.session.get("cart_id",None)
         qs = self.get_queryset().filter(id=cart_id)
+        new_obj=False
         if qs.count()==1:
             cart_obj = qs.first()
             if request.user.is_authenticated and cart_obj.user is None:
@@ -16,7 +17,8 @@ class CartManager(models.Manager):
         else:
             cart_obj = Cart.objects.new(user=request.user)
             request.session['cart_id'] = cart_obj.id
-        return cart_obj
+            new_obj=True
+        return cart_obj,new_obj
 
     def new(self,user=None):
         user_obj=None

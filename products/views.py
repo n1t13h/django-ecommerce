@@ -19,7 +19,7 @@ def search(request):
 
 def products_detail(request,slug):
     
-    cart_obj = Cart.objects.new_or_get(request)
+    cart_obj,new_obj = Cart.objects.new_or_get(request)
     product = Product.objects.get(slug=slug)
     context = {}
     context['product'] = product

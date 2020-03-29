@@ -22,7 +22,7 @@ urlpatterns = [
     path('',views.home_page,name="homepage"),
     path('register',views.register,name="register"),
     path('logout',views.logout_request,name="logout"),
-    path('login',views.login_request,name="logout"),
+    path('login',views.login_request,name="login"),
     path('search/',search,name="search")
 
     

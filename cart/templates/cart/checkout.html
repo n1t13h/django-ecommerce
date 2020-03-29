@@ -1,0 +1,29 @@
+{% extends 'main/header.html' %}
+{% block content %}
+{% if  not billing_profile %}
+<div class="container">
+    <div class="row ">
+        <div class="col l12 m6">
+            <h1>Login / Register To continue</h1>
+            
+        </div>
+        <div class="col s6 m6 l6">
+            <a href ="{% url "main:login" %}" class="btn black">Login</a>
+
+        </div>    
+        <div class="col s6 m6 l6">
+            <a href ="{% url "main:register" %}" class="btn black">Register</a>
+
+        </div>   
+    </div>
+</div>
+{% else %}
+    <div class="container">
+        <h1>Checkout</h1>
+        <h6>Cart Total : {{ order.cart.total }}</h6>
+        <h6>Shipping Total : {{ order.shipping_total }}</h6>
+        <h6>Order Total : {{ order.total }}</h6>
+    </div>
+{% endif %}
+
+{% endblock content %}

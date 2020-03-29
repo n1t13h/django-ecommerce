@@ -36,6 +36,11 @@
                     </li>
                     </ul>
                 </div>
+                <div class="row">
+                    <div class="col">
+                        <a href = "{% url "cart:checkout" %}" class="btn">checkout</a>
+                    </div>
+                </div>
             {% else %}
             <div class="col s12">
                 <h1>No Items in Cart</h1>
