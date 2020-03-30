@@ -17,13 +17,16 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 from products.views import search
+from addresses.views import checkout_address_create_view
 app_name="main"
 urlpatterns = [
     path('',views.home_page,name="homepage"),
     path('register',views.register,name="register"),
     path('logout',views.logout_request,name="logout"),
     path('login',views.login_request,name="login"),
-    path('search/',search,name="search")
+    path('search/',search,name="search"),
+    path('cart/guest/',views.guest_login_view,name="guest_login_view"),
+    path('checkout/address/create',checkout_address_create_view,name="checkout_address_create")
 
     
 ]

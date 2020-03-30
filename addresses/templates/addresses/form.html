@@ -1,0 +1,11 @@
+<form method="POST" action='/checkout/address/create'>
+            {% csrf_token %}
+            {% if nexturl %}
+            <input name="next" type="HIDDEN" value={{ nexturl }}>
+            {% endif %}
+            <input type="HIDDEN" name="address_type" value="{{ address_type }}">
+            {{ nexturl }}
+            {{ actionurl }}
+            {{ form.as_p }}
+            <button type="submit" class="btn black">Register</button>
+</form>

@@ -22,3 +22,6 @@ class NewUserForm(UserCreationForm):
             user.save()
         return user
 
+class GuestForm(forms.Form):
+    email = forms.EmailField()
+

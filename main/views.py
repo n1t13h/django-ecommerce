@@ -2,10 +2,10 @@ from django.shortcuts import render , redirect
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
-from .forms import NewUserForm
-
-
-
+from .forms import NewUserForm,GuestForm
+from django.utils.http import url_has_allowed_host_and_scheme,is_safe_url
+from .models import GuestEmail
+from django.conf import settings
 # Create your views here.
 def home_page(request):
     return render(request,"main/index.html",{})
@@ -49,3 +49,21 @@ def login_request(request):
         
     form = AuthenticationForm()
     return render(request,"main/login.html",{"form":form})
+
+
+def guest_login_view(request):
+    form = GuestForm(request.POST or None)
+    context = {
+        'form':form
+    }
+    next_ = request.GET.get("next")
+    next_post = request.POST.get("next")
+    redirect_path = next or next_post
+    if form.is_valid():
+        email = form.cleaned_data.get('email')
+        new_guest_email = GuestEmail.objects.create(email=email)
+        request.session['guest_email_id']=new_guest_email.id
+        return redirect(request.META['HTTP_REFERER'])
+    else:
+        return redirect("/")
+    return redirect("/")
