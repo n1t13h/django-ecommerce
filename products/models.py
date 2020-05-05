@@ -29,6 +29,8 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=20,decimal_places=2)
     image = models.ImageField(upload_to=path_and_rename, max_length=255, null=True, blank=True)
     slug = models.SlugField(unique=True)
+    featured = models.BooleanField(default=False)
+    active = models.BooleanField(default=True)
 
     objects = ProductManager()
 
